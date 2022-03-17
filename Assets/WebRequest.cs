@@ -15,7 +15,9 @@ public class WebRequest : MonoBehaviour
         // POST
         var dataToPost = new PostData(){type = "game_launch", user_id = AnalyticsSessionInfo.userId};
         var postRequest = CreateRequest("https://3gidp6rat9.execute-api.us-west-2.amazonaws.com/game-e2e-demo/events", RequestType.POST, dataToPost);
-        AttachHeader(postRequest, "Authorization","token");
+        AttachHeader(postRequest, "Accept","application/json");
+        AttachHeader(postRequest, "Authorization", "a99527741ba1faf5ba7818d6de3d53f4");
+        AttachHeader(postRequest, "Content-Type", "application/json");
         yield return postRequest.SendWebRequest();
         var deserializedPostData = JsonUtility.FromJson<Todo>(postRequest.downloadHandler.text);
     }
@@ -62,7 +64,6 @@ public class Todo {
 }
 
 [Serializable]
-
 public class PostData {
     public string type;
     public string user_id;
