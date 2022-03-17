@@ -65,7 +65,7 @@ public class Todo {
 
 public class PostData {
     public string type;
-    public string user_id
+    public string user_id;
 }
 
 public class PostResult
