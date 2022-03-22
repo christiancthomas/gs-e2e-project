@@ -14,13 +14,13 @@ public class WebRequest : MonoBehaviour
 
     private IEnumerator MakeRequests() {
         // POST
-        var dataToPost = new PostData(){type = "game_launch", user_id = AnalyticsSessionInfo.userId};
+        var dataToPost = new PostData(){type = "game_launch", user_id = 1};
         var postRequest = CreateRequest("https://3gidp6rat9.execute-api.us-west-2.amazonaws.com/game-e2e-demo/events", RequestType.POST, dataToPost);
         AttachHeader(postRequest, "Accept","application/json");
         AttachHeader(postRequest, "Authorization", "a99527741ba1faf5ba7818d6de3d53f4");
         AttachHeader(postRequest, "Content-Type", "application/json");
         yield return postRequest.SendWebRequest();
-        var deserializedPostData = JsonUtility.FromJson<Todo>(postRequest.downloadHandler.text);
+        var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
     }
 
     private UnityWebRequest CreateRequest(string path, RequestType type = RequestType.POST, object data = dataToPost) {
@@ -40,12 +40,6 @@ public class WebRequest : MonoBehaviour
     private void AttachHeader(UnityWebRequest request,string key,string value)
     {
         request.SetRequestHeader(key, value);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
 
