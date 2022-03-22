@@ -23,7 +23,7 @@ public class WebRequest : MonoBehaviour
         var deserializedPostData = JsonUtility.FromJson<PostResult>(postRequest.downloadHandler.text);
     }
 
-    private UnityWebRequest CreateRequest(string path, RequestType type = RequestType.POST, object data = dataToPost) {
+    private UnityWebRequest CreateRequest(string path, RequestType type = RequestType.POST, object data = null) {
         var request = new UnityWebRequest(path, type.ToString());
 
         if (data != null) {
