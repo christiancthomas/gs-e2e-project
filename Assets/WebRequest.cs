@@ -10,14 +10,15 @@ public class WebRequest: MonoBehaviour {
  
     public IEnumerator Upload() {
         List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
-        formData.Add(new MultipartFormDataSection("type = game_launch"));
+        formData.Add(new MultipartFormDataSection("type", "game_launch"));
 
         UnityWebRequest www = UnityWebRequest.Post("https://3gidp6rat9.execute-api.us-west-2.amazonaws.com/game-e2e-demo/events", formData);
-        www.SetRequestHeader("Accept","application/json");
-        www.SetRequestHeader("X-Api-Version", "1.1.0");
+        {
         www.SetRequestHeader("Authorization", "a99527741ba1faf5ba7818d6de3d53f4");
         www.SetRequestHeader("Content-Type", "application/json");
-        yield return www.Send();
+        www.SetRequestHeader("Accept","application/json");
+        www.SetRequestHeader("X-Api-Version", "1.1.0");
+        yield return www.SendWebRequest();
  
         if(www.isNetworkError) {
             Debug.Log(www.error);
@@ -25,5 +26,7 @@ public class WebRequest: MonoBehaviour {
         else {
             Debug.Log("Form upload complete.");
         }
+        }
+
     }
 }
