@@ -10,7 +10,7 @@ public class WebRequest: MonoBehaviour {
  
     public IEnumerator Upload() {
         List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
-        formData.Add( new MultipartFormDataSection("type" = "game_launch"));
+        formData.Add(new MultipartFormDataSection("type" = "game_launch"));
 
         UnityWebRequest www = UnityWebRequest.Post("https://3gidp6rat9.execute-api.us-west-2.amazonaws.com/game-e2e-demo/events", formData);
         www.SetRequestHeader("Accept","application/json");
