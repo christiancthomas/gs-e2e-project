@@ -20,7 +20,7 @@ public class WebRequest: MonoBehaviour {
         www.SetRequestHeader("X-Api-Version", "1.1.0");
         yield return www.SendWebRequest();
  
-        if(www.isNetworkError) {
+        if(www.result == www.Result.ConnectionError) {
             Debug.Log(www.error);
         }
         else {
