@@ -15,7 +15,7 @@ public class WebRequest: MonoBehaviour
     public IEnumerator Post(string url, string bodyJsonString)
     {
         // Creating a custom class and Json encoding
-        MyClass myObject = new MyClass();
+        var myObject = new MyClass();
         myObject.type = "game_launch";
         myObject.user_id = AnalyticsSessionInfo.userId;
         bodyJsonString = JsonUtility.ToJson(myObject);
@@ -36,7 +36,7 @@ public class WebRequest: MonoBehaviour
         yield return request.SendWebRequest();
 
         // Error handling
-        if(www.result == UnityWebRequest.Result.ConnectionError) 
+        if(request.result == UnityWebRequest.Result.ConnectionError) 
         {
             Debug.Log(request.error);
         }
