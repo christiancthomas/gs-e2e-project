@@ -12,7 +12,7 @@ public class WebRequest: MonoBehaviour
         StartCoroutine(Post());
     }
  
-    public IEnumerator Post(string url, string bodyJsonString)
+    public IEnumerator Post(string url = null, string bodyJsonString = null)
     {
         // Creating a custom class and Json encoding
         MyClass myObject = new MyClass();
