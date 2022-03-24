@@ -29,12 +29,18 @@ public class WebRequest: MonoBehaviour
         }
         else 
         {
-            Debug.Log("Form upload complete.");
-            Debug.Log(www.downloadHandler.data);
-            if (result != null)
+            Debug.Log("POST request complete.");
+            StringBuilder sb = new StringBuilder();
+            foreach (System.Collections.Generic.KeyValuePair<string, string> dict in www.GetResponseHeaders())
             {
-                result(www.downloadHandler.text);
+                sb.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
             }
+
+            // Print Headers
+            Debug.Log(sb.ToString());
+
+            // Print Body
+            Debug.Log(www.downloadHandler.text);
         }
         }
     }
