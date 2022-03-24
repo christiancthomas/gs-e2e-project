@@ -15,7 +15,7 @@ public class WebRequest: MonoBehaviour
     public IEnumerator Post(string url, string bodyJsonString)
     {
         // Creating a custom class and Json encoding
-        var myObject = new MyClass();
+        MyClass myObject = new MyClass();
         myObject.type = "game_launch";
         myObject.user_id = AnalyticsSessionInfo.userId;
         bodyJsonString = JsonUtility.ToJson(myObject);
@@ -58,4 +58,12 @@ public class WebRequest: MonoBehaviour
             Debug.Log("Status Code: " + request.responseCode);
         }
     }
+}
+
+// Using JSON serialization to create a structured JSON class
+[Serializable]
+public class MyClass
+{
+    public string type;
+    public string user_id;
 }
