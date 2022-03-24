@@ -55,6 +55,7 @@ public class WebRequest: MonoBehaviour
 
             // Print Body
             Debug.Log(request.downloadHandler.text);
+            Debug.Log(bodyJsonString);
 
             Debug.Log("Status Code: " + request.responseCode);
         }
