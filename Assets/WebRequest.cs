@@ -21,7 +21,7 @@ public class WebRequest: MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Post("https://3gidp6rat9.execute-api.us-west-2.amazonaws.com/game-e2e-demo/events", formData);
         
         // Setting request headers and sending request
-        {
+        
         www.SetRequestHeader("Authorization", "a99527741ba1faf5ba7818d6de3d53f4");
         www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("Accept","application/json");
@@ -48,6 +48,6 @@ public class WebRequest: MonoBehaviour
             // Print Body
             Debug.Log(www.downloadHandler.text);
         }
-        }
+        
     }
 }
