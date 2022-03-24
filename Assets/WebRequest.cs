@@ -25,6 +25,7 @@ public class WebRequest: MonoBehaviour {
         }
         else {
             Debug.Log("Form upload complete.");
+            Debug.Log(www.downloadHandler.data);
         }
         }
 
