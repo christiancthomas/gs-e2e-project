@@ -15,10 +15,14 @@ public class WebRequest: MonoBehaviour
  
     public IEnumerator Post(string url = null, string bodyJsonString = null)
     {
+        // Creating identifiers dictionary
+        Dictionary<string, string> platform = new Dictionary<string, string>();
+        platform.Add("platform","customlauncher");
         // Creating a custom class and Json encoding
         MyClass myObject = new MyClass();
         myObject.type = "game_launch";
         myObject.user_id = AnalyticsSessionInfo.userId;
+        myObject.identifiers = platform;
         bodyJsonString = JsonUtility.ToJson(myObject);
 
         url = "https://3gidp6rat9.execute-api.us-west-2.amazonaws.com/game-e2e-demo/events";
