@@ -10,19 +10,26 @@ public class WebRequest: MonoBehaviour
 {
     void Start() 
     {
+        foreach (var kvp in MyList) {
+            myDict[kvp.key] = kvp.val;
+        }
         StartCoroutine(Post());
     }
  
     public IEnumerator Post(string url = null, string bodyJsonString = null)
     {
-        // Creating identifiers dictionary
-        Dictionary<string, string> platform = new Dictionary<string, string>();
-        platform.Add("platform","customlauncher");
+        
         // Creating a custom class and Json encoding
         MyClass myObject = new MyClass();
         myObject.type = "game_launch";
         myObject.user_id = AnalyticsSessionInfo.userId;
+        // Creating identifiers dictionary
+        Dictionary<string, string> platform = new Dictionary<string, string>()
+        {
+            {"platform", "unity-launcher"}
+        };
         myObject.identifiers = platform;
+        myObject.test = 69420;
         bodyJsonString = JsonUtility.ToJson(myObject);
 
         url = "https://3gidp6rat9.execute-api.us-west-2.amazonaws.com/game-e2e-demo/events";
@@ -72,4 +79,15 @@ public class MyClass
 {
     public string type;
     public string user_id;
+    public Dictionary<string, string> identifiers;
 }
+
+[Serializable]
+public class KeyValuePair
+{
+    public string key = "platform";
+    public string val = "unity-launcher";
+}
+
+public List<KeyValuePair> MyList = new List<KeyValuePair>();
+Dictionary<string, string> myDict = new Dictionary<string, string>();
